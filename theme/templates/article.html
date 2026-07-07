@@ -46,4 +46,25 @@
       {{ article.content }}
     </div>
   </article>
+  {% for cat, cat_articles in categories %}
+    {% if cat == article.category %}
+      {% set related = cat_articles | rejectattr('url', 'equalto', article.url) | list %}
+      {% if related %}
+  <section class="related">
+    <h2 class="related-title">More in <a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a></h2>
+    <div class="related-grid">
+      {% for rel in related[:6] %}
+      <a class="related-card" href="{{ SITEURL }}/{{ rel.url }}">
+        <img class="related-card-icon" src="{{ SITEURL }}{{ rel.image }}" width="40" height="40" loading="lazy" alt="">
+        <div class="related-card-body">
+          <h3 class="related-card-title">{{ rel.title }}</h3>
+          <p class="related-card-summary">{{ rel.summary|striptags }}</p>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </section>
+      {% endif %}
+    {% endif %}
+  {% endfor %}
 {% endblock %}
