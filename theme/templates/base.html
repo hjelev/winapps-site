@@ -59,6 +59,7 @@
             {% for category, null in categories|sort(attribute='0.name') %}
             <li class="list-inline-item"><a href="{{ SITEURL }}/{{ category.url }}">{{ category }}</a></li>
             {% endfor %}
+            <li class="list-inline-item"><a href="{{ SITEURL }}/submit-app.html">Submit an App</a></li>
           </ul>
         </div>
       </div>
@@ -78,6 +79,7 @@
           <a href="{{ SITEURL }}/archives.html">Archives</a> &nbsp;
           <a href="{{ SITEURL }}/categories.html">Categories</a> &nbsp;
           <a href="{{ SITEURL }}/tags.html">Tags</a> &nbsp;
+          <a href="{{ SITEURL }}/submit-app.html">Submit an App</a> &nbsp;
           {% block footerextra %}{% endblock %}
         </div>
       </div>

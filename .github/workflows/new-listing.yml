@@ -1,0 +1,59 @@
+name: New app listing
+
+on:
+  repository_dispatch:
+    types: [new-listing]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  create-listing-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.client_payload.branch }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Download any URL-sourced images
+        env:
+          PAYLOAD_JSON: ${{ toJson(github.event.client_payload) }}
+        run: python scripts/generate_listing.py --step download-images
+
+      - name: Generate content/<slug>.html
+        env:
+          PAYLOAD_JSON: ${{ toJson(github.event.client_payload) }}
+        run: python scripts/generate_listing.py --step write-html
+
+      - name: Commit changes
+        env:
+          APP_NAME: ${{ github.event.client_payload.app_name }}
+          BRANCH: ${{ github.event.client_payload.branch }}
+        run: |
+          git config user.name "winapps-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add content/
+          git diff --cached --quiet && { echo "Nothing to commit"; exit 1; }
+          git commit -m "New listing: $APP_NAME"
+          git push origin "HEAD:$BRANCH"
+
+      - name: Ensure label exists
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh label create new-listing --color 0e8a16 --description "Community-submitted app listing" --force
+
+      - name: Open pull request
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          APP_NAME: ${{ github.event.client_payload.app_name }}
+          BRANCH: ${{ github.event.client_payload.branch }}
+        run: |
+          gh pr create --base master --head "$BRANCH" \
+            --title "New listing: $APP_NAME" \
+            --label new-listing \
+            --body-file pr_body.md

@@ -1,0 +1,22 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "winapps-submit-app",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-07-07",
+
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  },
+
+  // Non-secret config. Secrets (TURNSTILE_SECRET_KEY, GITHUB_PAT) are set via
+  // `wrangler secret put` and must never be added here.
+  "vars": {
+    "GITHUB_OWNER": "hjelev",
+    "GITHUB_REPO": "winapps-site",
+    "GITHUB_BASE_BRANCH": "master",
+    // Origin allowed to call this Worker from the browser. Update if the
+    // site is ever served from a different domain.
+    "ALLOWED_ORIGIN": "https://winapps.masoko.net"
+  }
+}

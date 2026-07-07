@@ -1,0 +1,184 @@
+{% extends "base.html" %}
+
+{% block title %}Submit an App | {{ SITENAME }}{% endblock %}
+
+{% block canonical_url %}submit-app.html{% endblock %}
+
+{% block meta %}
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+{% endblock %}
+
+{% block content %}
+<h1>Submit an App</h1>
+<hr>
+<p>Know a great free Windows app that isn't listed here yet? Fill out the form below and it will be
+opened as a pull request on GitHub for review. Nothing is published automatically &mdash; a maintainer
+checks every submission before it goes live.</p>
+
+<div id="submit-app-success" class="alert alert-success" style="display:none;" role="alert">
+  Thanks! Your submission has been sent for review. A maintainer will take a look soon.
+</div>
+<div id="submit-app-error" class="alert alert-danger" style="display:none;" role="alert"></div>
+
+<form id="submit-app-form" novalidate>
+  <div class="form-group">
+    <label for="app_name">App name</label>
+    <input type="text" class="form-control" id="app_name" name="app_name" maxlength="100" required>
+  </div>
+
+  <div class="form-group">
+    <label for="category">Category</label>
+    <select class="form-control" id="category" name="category" required>
+      <option value="" disabled selected>Choose a category&hellip;</option>
+      <!-- Kept in sync by hand with the CATEGORIES allow-list in worker/src/validate.ts -->
+      <option value="Archivers">Archivers</option>
+      <option value="Browsers">Browsers</option>
+      <option value="Chat">Chat</option>
+      <option value="FTP Clients">FTP Clients</option>
+      <option value="IP Cams">IP Cams</option>
+      <option value="Multimedia">Multimedia</option>
+      <option value="Network">Network</option>
+      <option value="Others">Others</option>
+      <option value="SD Cards">SD Cards</option>
+      <option value="SSH Clients">SSH Clients</option>
+      <option value="Sys info">Sys info</option>
+      <option value="Text Editors">Text Editors</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="tags">Tags</label>
+    <input type="text" class="form-control" id="tags" name="tags" maxlength="200" placeholder="comma, separated, tags" required>
+  </div>
+
+  <div class="form-group">
+    <label for="summary">Summary</label>
+    <textarea class="form-control" id="summary" name="summary" rows="4" maxlength="600" required></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="homepage_url">Homepage URL</label>
+    <input type="url" class="form-control" id="homepage_url" name="homepage_url" placeholder="https://" required>
+  </div>
+
+  <div class="form-group">
+    <label for="download_url">Download URL</label>
+    <input type="url" class="form-control" id="download_url" name="download_url" placeholder="https://" required>
+  </div>
+
+  <div class="form-group">
+    <label for="portable_url">Portable version URL <small class="text-muted">(optional)</small></label>
+    <input type="url" class="form-control" id="portable_url" name="portable_url" placeholder="https://">
+  </div>
+
+  <div class="form-group image-field" data-field="icon">
+    <label>Icon image</label>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="icon_mode" id="icon_mode_url" value="url" checked>
+      <label class="form-check-label" for="icon_mode_url">Paste a URL</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="icon_mode" id="icon_mode_file" value="file">
+      <label class="form-check-label" for="icon_mode_file">Upload a file</label>
+    </div>
+    <input type="url" class="form-control mt-2 icon-url-input" id="icon_url" name="icon_url" placeholder="https://">
+    <input type="file" class="form-control-file mt-2 icon-file-input" id="icon_file" name="icon_file" accept="image/png,image/jpeg,image/webp" disabled>
+    <small class="form-text text-muted">PNG, JPEG or WebP, up to 300&nbsp;KB.</small>
+  </div>
+
+  <div class="form-group image-field" data-field="screenshot">
+    <label>Screenshot image</label>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="screenshot_mode" id="screenshot_mode_url" value="url" checked>
+      <label class="form-check-label" for="screenshot_mode_url">Paste a URL</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="screenshot_mode" id="screenshot_mode_file" value="file">
+      <label class="form-check-label" for="screenshot_mode_file">Upload a file</label>
+    </div>
+    <input type="url" class="form-control mt-2 screenshot-url-input" id="screenshot_url" name="screenshot_url" placeholder="https://">
+    <input type="file" class="form-control-file mt-2 screenshot-file-input" id="screenshot_file" name="screenshot_file" accept="image/png,image/jpeg,image/webp" disabled>
+    <small class="form-text text-muted">PNG, JPEG or WebP, up to 1&nbsp;MB.</small>
+  </div>
+
+  <div class="form-group">
+    <!-- Replace with your real Turnstile site key after creating the widget in the Cloudflare dashboard. -->
+    <div class="cf-turnstile" data-sitekey="0x4AAAAAADxhnk84GxUq5jGx"></div>
+  </div>
+
+  <button type="submit" class="btn btn-primary" id="submit-app-button">Submit for review</button>
+</form>
+
+<script>
+(function () {
+  // Set this to your deployed Worker's URL (see worker/README or the plan's manual-setup steps).
+  var WORKER_URL = "https://winapps-submit-app.masoko.workers.dev";
+
+  var form = document.getElementById("submit-app-form");
+  var successBox = document.getElementById("submit-app-success");
+  var errorBox = document.getElementById("submit-app-error");
+  var submitButton = document.getElementById("submit-app-button");
+
+  function wireToggle(fieldName) {
+    var urlInput = document.getElementById(fieldName + "_url");
+    var fileInput = document.getElementById(fieldName + "_file");
+    var radios = document.getElementsByName(fieldName + "_mode");
+    for (var i = 0; i < radios.length; i++) {
+      radios[i].addEventListener("change", function (e) {
+        var useFile = e.target.value === "file";
+        urlInput.disabled = useFile;
+        fileInput.disabled = !useFile;
+        urlInput.required = !useFile;
+      });
+    }
+  }
+  wireToggle("icon");
+  wireToggle("screenshot");
+
+  function showError(message) {
+    errorBox.textContent = message;
+    errorBox.style.display = "block";
+    successBox.style.display = "none";
+  }
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    errorBox.style.display = "none";
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    var turnstileToken = form.querySelector('[name="cf-turnstile-response"]');
+    if (!turnstileToken || !turnstileToken.value) {
+      showError("Please complete the verification challenge before submitting.");
+      return;
+    }
+
+    submitButton.disabled = true;
+    submitButton.textContent = "Submitting…";
+
+    var formData = new FormData(form);
+
+    fetch(WORKER_URL, {
+      method: "POST",
+      body: formData
+    }).then(function (response) {
+      return response.json().catch(function () { return {}; }).then(function (data) {
+        if (!response.ok || !data.ok) {
+          throw new Error((data && data.error) || "Submission failed. Please try again.");
+        }
+        form.style.display = "none";
+        successBox.style.display = "block";
+      });
+    }).catch(function (err) {
+      showError(err.message || "Something went wrong. Please try again.");
+    }).finally(function () {
+      submitButton.disabled = false;
+      submitButton.textContent = "Submit for review";
+    });
+  });
+})();
+</script>
+{% endblock %}
