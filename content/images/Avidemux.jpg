@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="description" content="The original FREE picture resize and crop tool since 2005! Resize, crop, compress, add effects to your images, photos, and screenshots for free!" />
+<meta name="keywords" content="picture resize, online image resizer, free image resizer, crop picture, resize pictures, resize photos, reduce photo size, reduce picture size" />
+<title>PicResize - Crop, Resize, Edit images online for free!</title>
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-xVVam1KS4+Qt2OrFa+VdRUoXygyKIuNWUUUBZYv+n27STsJ7oDOHJgfF0bNKLMJF" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://pr.azureedge.net/js/local.js"></script>
+<link href="https://pr.azureedge.net/css/mdb.min.css" rel="stylesheet">
+<link href="https://pr.azureedge.net/css/addons/mdb-file-upload.min.css" rel="stylesheet">
+<link href="https://pr.azureedge.net/css/style.min.css" rel="stylesheet">
+<link href="https://pr.azureedge.net/css/carbon.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/picresize-assets/css/lightview/lightview.css" />
+<link rel="shortcut icon" href="/favicon.ico?v=2" />
+<link rel="canonical" href="https://picresize.com/en"/>
+<meta property="og:site_name" content="PicResize - Crop, Resize, Edit images online for free!"/>
+<meta property="og:title" content="PicResize - Crop, Resize, Edit images online for free!"/>
+<meta property="og:description" content="The original FREE picture resize and crop tool since 2005! Resize, crop, compress, add effects to your images, photos, and screenshots for free!"/>
+<meta property="og:image" content="https://www.picresize.com/img/picresize-graph.png"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://picresize.com/en"/>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-781133-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-781133-1');
+</script>
+<script async='async' src='https://securepubads.g.doubleclick.net/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+
+  googletag.cmd.push(function() {
+    googletag.defineSlot('/3092934/picresize_sitewide_atf_728x90', [[728, 90], [970, 90], [468, 60]], 'div-gpt-ad-1559967090531-0').addService(googletag.pubads());
+    googletag.defineSlot('/3092934/picresize_sitewide_btf_728x90', [[728, 90], [970, 90], [468, 60]], 'div-gpt-ad-1559967153831-0').addService(googletag.pubads());
+
+    
+    googletag.pubads().enableSingleRequest();
+    googletag.pubads().disableInitialLoad();
+    googletag.enableServices();
+  });
+</script>
+<script src="//cdn.districtm.ca/merge/merge.152220.js"></script>
+</head>
+<body>
+<header>
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark stylish-color scrolling-navbar">
+<a class="navbar-brand" href="/"><img src="https://pr.azureedge.net/img/picresize-emblem.png" alt="PicResize Logo" style="width:40px;"/> <strong>PicResize</strong></a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+<ul class="navbar-nav mr-auto">
+<li class="nav-item">
+<a class="nav-link" href="/">Edit Picture <span class="sr-only">(current)</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="/en/batch">Batch Resize</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="/en/about">About</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="/en/help">Help</a>
+</li>
+</ul>
+<ul class="navbar-nav">
+<li class="nav-item dropdown active">
+<a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fal fa-globe"></i> Language: English </a>
+<ul class="dropdown-menu dropdown-menu-right multi-column" style="min-width: 400px">
+<div class="row">
+<div class="col-sm-6">
+<a class="dropdown-item" href="/en"><i class="fas fa-check"></i> English</a>
+<a class="dropdown-item" href="/ar">Arabic (ةيبرعلا)</a>
+<a class="dropdown-item" href="/bn">Bengali (বাংলা)</a>
+<a class="dropdown-item" href="/cn">Chinese (英文)</a>
+<a class="dropdown-item" href="/fr">French (Français)</a>
+<a class="dropdown-item" href="/fi">Finnish</a>
+<a class="dropdown-item" href="/de">German (Deutsche)</a>
+<a class="dropdown-item" href="/hi">Hindi (हिंदी)</a>
+</div>
+<div class="col-sm-6">
+<a class="dropdown-item" href="/id">Indonesian</a>
+<a class="dropdown-item" href="/it">Italian (Italiano)</a>
+<a class="dropdown-item" href="/ja">Japanese (日本語)</a>
+<a class="dropdown-item" href="/kr">Korean (한국어)</a>
+<a class="dropdown-item" href="/ru">Russian (Русский)</a>
+<a class="dropdown-item" href="/es">Spanish (Español)</a>
+<a class="dropdown-item" href="/th">Thai (ไทย)</a>
+<a class="dropdown-item" href="/vi">Vietnamese (Tiếng Việt)</a>
+</div>
+</div>
+</ul>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="https://facebook.com/picresize" target="_blank"><i class="fab fa-facebook-f"></i></a>
+</li>
+</ul>
+</div>
+</nav>
+</header>
+<main>
+<div class="container">
+<div class="row mt-5 pt-5">
+<div class="col text-center">
+<div id="carbon-block"></div>
+<script>
+  fetch(new Request("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", { method: 'HEAD', mode: 'no-cors'})).then(function(response) {
+    return true;
+  }).catch(function(e) {
+    var carbonScript = document.createElement("script");
+    carbonScript.src = "//cdn.carbonads.com/carbon.js?serve=CE7DT53I&placement=picresizecom";
+    carbonScript.id = "_carbonads_js";
+    document.getElementById("carbon-block").appendChild(carbonScript);
+  });
+</script>
+<!-- /3092934/picresize_sitewide_atf_728x90 -->
+<div id='div-gpt-ad-1559967090531-0'>
+<script>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1559967090531-0'); });
+</script>
+</div>
+<h1 class="h1-responsive">The Internet's Original Picture Resizing Tool</h1>
+<h5 class="d-none d-sm-block">Easily crop, resize, and edit your images online for FREE at PicResize. <span id="counter" style="color:#e30e6f" title="Live Counter">188,899,188</span> pictures served!</h5><br/>           </div>
+</div> <!-- end row -->
+<div class="row">
+<div class="col">
+<div class="text-center text-sm-left"><a href="/"><img src="https://pr.azureedge.net/img/picresize_logo_registered.png" alt="PicResize Logo" /></a></div>
+<div class="jumbotron" style="padding: 2rem;margin-bottom:.5rem;">
+<h1 class="h1-responsive">Oops!</h1><hr>
+<div class="text-center">
+<h1 class="display-1">404</h1>
+<h4 class="h4-responsive">The page you are looking for might have been removed or is temporarily unavailable. <a href="/">Return to homepage</a></h4>
+</div>
+</div> <!-- end jumbotron -->
+</div> <!-- end col -->
+</div> <!-- end row -->
+<div class="row">
+<div class="col-8">
+Images are automatically deleted. <a href="/en/privacypolicy">Read our strict privacy policy</a>
+</div>
+<div class="col-4 text-right">&copy; 2005-2019 Internich LLC.</div>
+</div>
+<div class="row pt-3 pb-3">
+<div class="col text-center">
+<!-- /3092934/picresize_sitewide_btf_728x90 -->
+<div id='div-gpt-ad-1559967153831-0'>
+<script>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1559967153831-0'); });
+</script>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="/js/jquery-3.4.0.min.js"><\/script>');</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script>window.Popper || document.write('<script src="/js/popper.min.js"><\/script>');</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script>window.jQuery.fn.modal || document.write('<script src="/js/bootstrap.min.js"><\/script>');</script>
+<script src="/js/mdb.min.js"></script>
+<script src="/js/app.js"></script>
+<script src="/ads.js"></script>
+<script src="/picresize-assets/js/lightview/lightview.js"></script>
+<script>
+  !function(a9,a,p,s,t,A,g){if(a[a9])return;function q(c,r){a[a9]._Q.push([c,r])}a[a9]={init:function(){q("i",arguments)},fetchBids:function(){q("f",arguments)},setDisplayBids:function(){},targetingKeys:function(){return[]},_Q:[]};A=p.createElement(s);A.async=!0;A.src=t;g=p.getElementsByTagName(s)[0];g.parentNode.insertBefore(A,g)}("apstag",window,document,"script","//c.amazon-adsystem.com/aax2/apstag.js");
+
+  // initialize apstag and have apstag set bids on the googletag slots when they are returned to the page
+  apstag.init({
+    pubID:  'cc290a0e-a289-4665-94a5-f4b687eb9c39',
+    adServer: 'googletag'
+  });
+
+  // request the bids for the four googletag slots
+  apstag.fetchBids({
+    slots: [{
+      slotID: 'div-gpt-ad-1559967090531-0',
+      slotName: '/3092934/picresize_sitewide_atf_728x90',
+      sizes: [[728, 90], [970, 90], [468, 60]]
+    },
+
+
+    {
+      slotID: 'div-gpt-ad-1559967153831-0',
+      slotName: '/3092934/picresize_sitewide_btf_728x90',
+      sizes: [[728, 90], [970, 90], [468, 60]]
+    }]
+  }, function(bids) {
+    // set apstag bids, then trigger the first request to DFP
+    googletag.cmd.push(function() {
+      apstag.setDisplayBids();
+      googletag.pubads().refresh();    
+    });
+  });
+</script>
+<script>
+if(document.getElementById('pradbox')){
+   gtag('event', 'Adblock', {
+      'event_category' : 'Ad Setting',
+      'event_label' : 'Enabled'
+   });
+}
+</script>
+<!-- Begin 33Across SiteCTRL -->
+<script>
+var Tynt=Tynt||[];Tynt.push('cyEo1M344r5iTYacwqm_6r');
+(function(){var h,s=document.createElement('script');
+s.src=(window.location.protocol==='https:'?
+'https':'http')+'://cdn.tynt.com/ti.js';
+h=document.getElementsByTagName('script')[0];
+h.parentNode.insertBefore(s,h);})();
+</script>
+<!-- End 33Across SiteCTRL -->
+</body>
+</html>

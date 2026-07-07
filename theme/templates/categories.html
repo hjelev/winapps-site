@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Categories | {{ SITENAME }}{% endblock %}
+
+{% block canonical_url %}categories.html{% endblock %}
+
+{% block content %}
+      <h1>Categories</h1>
+      <hr>
+      <table class="table table-bordered table-striped">
+        {% for category, cat_articles in categories|sort(attribute='0.name') %}
+        <tr><td><a href="{{ SITEURL }}/{{ category.url }}">{{ category }}</a></td><td>{{ cat_articles|length }}</td></tr>
+        {% endfor %}
+      </table>
+{% endblock %}

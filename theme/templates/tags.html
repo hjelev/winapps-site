@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Tags | {{ SITENAME }}{% endblock %}
+
+{% block canonical_url %}tags.html{% endblock %}
+
+{% block content %}
+      <h1>Tags</h1>
+      <hr>
+      <table class="table table-bordered table-striped">
+        {% for tag, tag_articles in tags|sort(attribute='0.name') %}
+        <tr><td><a href="{{ SITEURL }}/{{ tag.url }}">#{{ tag }}</a></td><td>{{ tag_articles|length }}</td></tr>
+        {% endfor %}
+      </table>
+{% endblock %}

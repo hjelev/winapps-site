@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="{{ SITEURL }}/theme/tipuesearch/css/tipuesearch.css">
+  <title>{% block title %}{{ SITENAME }}{% endblock %}</title>
+  <link rel="canonical" href="{{ SITEURL }}/{% block canonical_url %}{% endblock %}">
+  <link rel="shortcut icon" type="image/png" href="{{ SITEURL }}/images/favicon.png"/>
+
+  <link rel="stylesheet" href="{{ SITEURL }}/theme/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{ SITEURL }}/theme/css/font-awesome.min.css">
+  <link rel="stylesheet" href="{{ SITEURL }}/theme/css/pygments/default.min.css">
+  <link rel="stylesheet" href="{{ SITEURL }}/theme/css/theme.css">
+
+  {% block meta %}{% endblock %}
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-131668455-2"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-131668455-2');
+  </script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
+</style>
+</head>
+
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-1">
+          <a href="{{ SITEURL }}/">
+            <img src="{{ SITEURL }}/images/logo.png" alt="{{ SITENAME }}">
+          </a>
+        </div>
+        <div class="col-sm-7">
+          <h1 class="title"><a href="{{ SITEURL }}/">{{ SITENAME }}</a></h1>
+          <p class="text-muted">{{ SITESUBTITLE|safe }}</p>
+        </div>
+        <div class="col-sm-4">
+          <p>
+            <form class="navbar-search" action="{{ SITEURL }}/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="" name="q" id="tipue_search_input"><input type="submit" value="Search"></form>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="menu">
+      <div class="container">
+        <div class="col-sm-12">
+          <ul class="list-inline">
+            {% for category, null in categories|sort(attribute='0.name') %}
+            <li class="list-inline-item"><a href="{{ SITEURL }}/{{ category.url }}">{{ category }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="main">
+    <div class="container">
+      {% block content %}{% endblock %}
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="menu">
+      <div class="container">
+        <div class="headf">
+          <a href="{{ SITEURL }}/archives.html">Archives</a> &nbsp;
+          <a href="{{ SITEURL }}/categories.html">Categories</a> &nbsp;
+          <a href="{{ SITEURL }}/tags.html">Tags</a> &nbsp;
+          {% block footerextra %}{% endblock %}
+        </div>
+      </div>
+    </div>
+  </footer>
+
+<a id="button"></a>
+
+<script type="text/javascript">
+var btn = $('#button');
+
+$(window).scroll(function() {
+  if ($(window).scrollTop() > 300) {
+    btn.addClass('show');
+  } else {
+    btn.removeClass('show');
+  }
+});
+
+btn.on('click', function(e) {
+  e.preventDefault();
+  $('html, body').animate({scrollTop:0}, '300');
+});
+</script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}  {{ article.title }}
+| {{ SITENAME }}{% endblock %}
+
+{% block canonical_url %}{{ article.url }}{% endblock %}
+
+{% block meta %}
+  <meta name="description" content="{{ article.summary|striptags }}">
+
+	<!-- Open Graph data -->
+	<meta property="og:title" content="{{ article.title }}" />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content="{{ SITEURL }}/{{ article.url }}" />
+	<meta property="og:image" content="{{ SITEURL }}{{ article.image }}" />
+	<meta property="og:description" content="{{ article.summary|striptags }}" />
+{% endblock %}
+
+{% block content %}
+      <h1>  {{ article.title }}
+</h1>
+      <hr>
+  <article class="article">
+    <header>
+      <ul class="list-inline">
+        <li class="list-inline-item text-muted" title="{{ article.date.isoformat() }}">
+          <i class="fa fa-clock-o"></i>
+          {{ article.locale_date }}
+        </li>
+        <li class="list-inline-item">
+          <i class="fa fa-folder-open-o"></i>
+          <a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a>
+        </li>
+        {% if article.tags %}
+          <li class="list-inline-item">
+            <i class="fa fa-files-o"></i>
+              {% for tag in article.tags %}<a href="{{ SITEURL }}/{{ tag.url }}">#{{ tag }}</a>{% if not loop.last %}, {% endif %}{% endfor %}          </li>
+        {% endif %}
+      </ul>
+    </header>
+    <div class="content">
+      {{ article.content }}
+    </div>
+  </article>
+{% endblock %}
