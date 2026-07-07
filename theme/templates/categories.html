@@ -5,11 +5,10 @@
 {% block canonical_url %}categories.html{% endblock %}
 
 {% block content %}
-      <h1>Categories</h1>
-      <hr>
-      <table class="table table-bordered table-striped">
+      <h1 class="page-title">Categories</h1>
+      <ul class="term-list">
         {% for category, cat_articles in categories|sort(attribute='0.name') %}
-        <tr><td><a href="{{ SITEURL }}/{{ category.url }}">{{ category }}</a></td><td>{{ cat_articles|length }}</td></tr>
+        <li><a href="{{ SITEURL }}/{{ category.url }}">{{ category }}</a><span class="term-count">{{ cat_articles|length }}</span></li>
         {% endfor %}
-      </table>
+      </ul>
 {% endblock %}

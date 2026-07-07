@@ -1,6 +1,6 @@
 AUTHOR = 'Masoko'
 SITENAME = 'WinApps.Masoko.net'
-SITESUBTITLE = 'Free software for <i class="fa fa-windows"></i> windows!'
+SITESUBTITLE = 'Free software for Windows!'
 SITEURL = ''
 
 PATH = 'content'

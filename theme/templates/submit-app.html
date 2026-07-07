@@ -9,26 +9,25 @@
 {% endblock %}
 
 {% block content %}
-<h1>Submit an App</h1>
-<hr>
+<h1 class="page-title">Submit an App</h1>
 <p>Know a great free Windows app that isn't listed here yet? Fill out the form below and it will be
 opened as a pull request on GitHub for review. Nothing is published automatically &mdash; a maintainer
 checks every submission before it goes live.</p>
 
-<div id="submit-app-success" class="alert alert-success" style="display:none;" role="alert">
+<div id="submit-app-success" class="notice notice-success" style="display:none;" role="alert">
   Thanks! Your submission has been sent for review. A maintainer will take a look soon.
 </div>
-<div id="submit-app-error" class="alert alert-danger" style="display:none;" role="alert"></div>
+<div id="submit-app-error" class="notice notice-error" style="display:none;" role="alert"></div>
 
 <form id="submit-app-form" novalidate>
-  <div class="form-group">
+  <div class="field">
     <label for="app_name">App name</label>
-    <input type="text" class="form-control" id="app_name" name="app_name" maxlength="100" required>
+    <input type="text" id="app_name" name="app_name" maxlength="100" required>
   </div>
 
-  <div class="form-group">
+  <div class="field">
     <label for="category">Category</label>
-    <select class="form-control" id="category" name="category" required>
+    <select id="category" name="category" required>
       <option value="" disabled selected>Choose a category&hellip;</option>
       <!-- Kept in sync by hand with the CATEGORIES allow-list in worker/src/validate.ts -->
       <option value="Archivers">Archivers</option>
@@ -46,67 +45,67 @@ checks every submission before it goes live.</p>
     </select>
   </div>
 
-  <div class="form-group">
+  <div class="field">
     <label for="tags">Tags</label>
-    <input type="text" class="form-control" id="tags" name="tags" maxlength="200" placeholder="comma, separated, tags" required>
+    <input type="text" id="tags" name="tags" maxlength="200" placeholder="comma, separated, tags" required>
   </div>
 
-  <div class="form-group">
+  <div class="field">
     <label for="summary">Summary</label>
-    <textarea class="form-control" id="summary" name="summary" rows="4" maxlength="600" required></textarea>
+    <textarea id="summary" name="summary" rows="4" maxlength="600" required></textarea>
   </div>
 
-  <div class="form-group">
+  <div class="field">
     <label for="homepage_url">Homepage URL</label>
-    <input type="url" class="form-control" id="homepage_url" name="homepage_url" placeholder="https://" required>
+    <input type="url" id="homepage_url" name="homepage_url" placeholder="https://" required>
   </div>
 
-  <div class="form-group">
+  <div class="field">
     <label for="download_url">Download URL</label>
-    <input type="url" class="form-control" id="download_url" name="download_url" placeholder="https://" required>
+    <input type="url" id="download_url" name="download_url" placeholder="https://" required>
   </div>
 
-  <div class="form-group">
-    <label for="portable_url">Portable version URL <small class="text-muted">(optional)</small></label>
-    <input type="url" class="form-control" id="portable_url" name="portable_url" placeholder="https://">
+  <div class="field">
+    <label for="portable_url">Portable version URL <small class="hint">(optional)</small></label>
+    <input type="url" id="portable_url" name="portable_url" placeholder="https://">
   </div>
 
-  <div class="form-group image-field" data-field="icon">
+  <div class="field image-field" data-field="icon">
     <label>Icon image</label>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="icon_mode" id="icon_mode_url" value="url" checked>
-      <label class="form-check-label" for="icon_mode_url">Paste a URL</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="icon_mode" id="icon_mode_file" value="file">
-      <label class="form-check-label" for="icon_mode_file">Upload a file</label>
-    </div>
-    <input type="url" class="form-control mt-2 icon-url-input" id="icon_url" name="icon_url" placeholder="https://">
-    <input type="file" class="form-control-file mt-2 icon-file-input" id="icon_file" name="icon_file" accept="image/png,image/jpeg,image/webp" disabled>
-    <small class="form-text text-muted">PNG, JPEG or WebP, up to 300&nbsp;KB.</small>
+    <label class="choice" for="icon_mode_url">
+      <input type="radio" name="icon_mode" id="icon_mode_url" value="url" checked>
+      Paste a URL
+    </label>
+    <label class="choice" for="icon_mode_file">
+      <input type="radio" name="icon_mode" id="icon_mode_file" value="file">
+      Upload a file
+    </label>
+    <input type="url" class="icon-url-input" id="icon_url" name="icon_url" placeholder="https://">
+    <input type="file" class="icon-file-input" id="icon_file" name="icon_file" accept="image/png,image/jpeg,image/webp" disabled>
+    <small class="hint">PNG, JPEG or WebP, up to 300&nbsp;KB.</small>
   </div>
 
-  <div class="form-group image-field" data-field="screenshot">
+  <div class="field image-field" data-field="screenshot">
     <label>Screenshot image</label>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="screenshot_mode" id="screenshot_mode_url" value="url" checked>
-      <label class="form-check-label" for="screenshot_mode_url">Paste a URL</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="screenshot_mode" id="screenshot_mode_file" value="file">
-      <label class="form-check-label" for="screenshot_mode_file">Upload a file</label>
-    </div>
-    <input type="url" class="form-control mt-2 screenshot-url-input" id="screenshot_url" name="screenshot_url" placeholder="https://">
-    <input type="file" class="form-control-file mt-2 screenshot-file-input" id="screenshot_file" name="screenshot_file" accept="image/png,image/jpeg,image/webp" disabled>
-    <small class="form-text text-muted">PNG, JPEG or WebP, up to 1&nbsp;MB.</small>
+    <label class="choice" for="screenshot_mode_url">
+      <input type="radio" name="screenshot_mode" id="screenshot_mode_url" value="url" checked>
+      Paste a URL
+    </label>
+    <label class="choice" for="screenshot_mode_file">
+      <input type="radio" name="screenshot_mode" id="screenshot_mode_file" value="file">
+      Upload a file
+    </label>
+    <input type="url" class="screenshot-url-input" id="screenshot_url" name="screenshot_url" placeholder="https://">
+    <input type="file" class="screenshot-file-input" id="screenshot_file" name="screenshot_file" accept="image/png,image/jpeg,image/webp" disabled>
+    <small class="hint">PNG, JPEG or WebP, up to 1&nbsp;MB.</small>
   </div>
 
-  <div class="form-group">
+  <div class="field">
     <!-- Replace with your real Turnstile site key after creating the widget in the Cloudflare dashboard. -->
     <div class="cf-turnstile" data-sitekey="0x4AAAAAADxhnk84GxUq5jGx"></div>
   </div>
 
-  <button type="submit" class="btn btn-primary" id="submit-app-button">Submit for review</button>
+  <button type="submit" class="btn btn-accent" id="submit-app-button">Submit for review</button>
 </form>
 
 <script>

@@ -5,11 +5,10 @@
 {% block canonical_url %}tags.html{% endblock %}
 
 {% block content %}
-      <h1>Tags</h1>
-      <hr>
-      <table class="table table-bordered table-striped">
+      <h1 class="page-title">Tags</h1>
+      <ul class="term-list">
         {% for tag, tag_articles in tags|sort(attribute='0.name') %}
-        <tr><td><a href="{{ SITEURL }}/{{ tag.url }}">#{{ tag }}</a></td><td>{{ tag_articles|length }}</td></tr>
+        <li><a href="{{ SITEURL }}/{{ tag.url }}">#{{ tag }}</a><span class="term-count">{{ tag_articles|length }}</span></li>
         {% endfor %}
-      </table>
+      </ul>
 {% endblock %}

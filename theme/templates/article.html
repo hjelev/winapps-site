@@ -17,28 +17,16 @@
 {% endblock %}
 
 {% block content %}
-      <h1>  {{ article.title }}
-</h1>
-      <hr>
   <article class="article">
     <header>
-      <ul class="list-inline">
-        <li class="list-inline-item text-muted" title="{{ article.date.isoformat() }}">
-          <i class="fa fa-clock-o"></i>
-          {{ article.locale_date }}
-        </li>
-        <li class="list-inline-item">
-          <i class="fa fa-folder-open-o"></i>
-          <a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a>
-        </li>
-        {% if article.tags %}
-          <li class="list-inline-item">
-            <i class="fa fa-files-o"></i>
-              {% for tag in article.tags %}<a href="{{ SITEURL }}/{{ tag.url }}">#{{ tag }}</a>{% if not loop.last %}, {% endif %}{% endfor %}          </li>
-        {% endif %}
-      </ul>
+      <h1 class="page-title">{{ article.title }}</h1>
+      <p class="article-meta">
+        <a class="badge" href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a>
+        <time datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time>
+        {% if article.tags %}{% for tag in article.tags %}<a class="tag" href="{{ SITEURL }}/{{ tag.url }}">#{{ tag }}</a>{% endfor %}{% endif %}
+      </p>
     </header>
-    <div class="content">
+    <div class="prose">
       {{ article.content }}
     </div>
   </article>

@@ -180,27 +180,20 @@ LISTING_TEMPLATE = """<html>
 <meta name="image" content="{icon_src}">
 </head>
 <body>
-<img alt="{title}" src="{icon_src}" style="float:left;margin-right:30px;margin-top:8px;margin-bottom:10px;"/>
+<img alt="{title}" class="app-icon" height="128" src="{icon_src}" width="128"/>
 <h2>{title}</h2>
 <p>{summary}</p>
-<div style="clear: left;"></div>
-<br/>
-<h3>{title} Screen Shot</h3>
-<img class="img-fluid" src="{screenshot_src}" style="max-width: 100%; height: auto; display: block; "/><br/><br/>
-<div class="row">
-<br/>
-</div>
-<p></p>
-<a class="btn btn-primary" href="{homepage_url}" rel="nofollow" style="text-decoration: none" target="_blank"><i class="fa fa-home"></i>  {title} Home Page</a> <br/><br/>
-<a class="btn btn-warning" href="{download_url}" rel="nofollow" style="text-decoration: none" target="_blank"><i class="fa fa-download"></i> Download {title}</a><br/><br/>
-{portable_button}</body>
+<figure class="app-screenshot"><img alt="{title} screenshot" loading="lazy" src="{screenshot_src}"/></figure>
+<p class="app-links"><a class="btn btn-download" href="{download_url}" rel="nofollow noopener" target="_blank">Download {title}</a>
+<a class="btn btn-home" href="{homepage_url}" rel="nofollow noopener" target="_blank">{title} Home Page</a>
+{portable_button}</p>
+</body>
 </html>
 """
 
 PORTABLE_BUTTON_TEMPLATE = (
-    '<a class="btn btn-danger" href="{portable_url}" rel="nofollow" '
-    'style="text-decoration: none" target="_blank">'
-    '<i class="fa fa-suitcase"></i>  {title} Portable Version</a><br/><br/>\n'
+    '<a class="btn btn-portable" href="{portable_url}" rel="nofollow noopener" '
+    'target="_blank">{title} Portable Version</a>\n'
 )
 
 PR_BODY_TEMPLATE = """## New app submission: {title}

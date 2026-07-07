@@ -5,12 +5,11 @@
 {% block canonical_url %}archives.html{% endblock %}
 
 {% block content %}
-      <h1>Archives</h1>
-      <hr>
-      <dl class="row">
+      <h1 class="page-title">Archives</h1>
+      <dl class="archive-list">
         {% for article in dates %}
-        <dt class="col-sm-4">{{ article.locale_date }}</dt>
-        <dd class="col-sm-8"><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></dd>
+        <dt>{{ article.locale_date }}</dt>
+        <dd><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></dd>
         {% endfor %}
       </dl>
 {% endblock %}

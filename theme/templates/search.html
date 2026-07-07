@@ -5,21 +5,7 @@
 {% block canonical_url %}search.html{% endblock %}
 
 {% block content %}
-      <h1>Search results</h1>
-      <hr>
-      <div class="entry-content">
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-        <script src="{{ SITEURL }}/theme/tipuesearch/tipuesearch_set.js"></script>
-        <script src="{{ SITEURL }}/theme/tipuesearch/tipuesearch.min.js"></script>
-        <script>
-          $(document).ready(function() {
-            $('#tipue_search_input').tipuesearch({
-              'show': 8,
-              'mode': 'json',
-              'contentLocation': '{{ SITEURL }}/tipuesearch_content.json'
-            });
-          });
-        </script>
-        <div id="tipue_search_content"></div>
-      </div>
+      <h1 class="page-title">Search results</h1>
+      <div id="tipue_search_content" data-root="{{ SITEURL }}/"></div>
+      <script defer src="{{ SITEURL }}/theme/js/search.js"></script>
 {% endblock %}

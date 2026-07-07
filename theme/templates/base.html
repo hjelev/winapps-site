@@ -3,20 +3,18 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="{{ SITEURL }}/theme/tipuesearch/css/tipuesearch.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#eef4f3" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0c1514" media="(prefers-color-scheme: dark)">
   <title>{% block title %}{{ SITENAME }}{% endblock %}</title>
   <link rel="canonical" href="{{ SITEURL }}/{% block canonical_url %}{% endblock %}">
   <link rel="shortcut icon" type="image/png" href="{{ SITEURL }}/images/favicon.png"/>
 
-  <link rel="stylesheet" href="{{ SITEURL }}/theme/css/bootstrap.min.css">
-  <link rel="stylesheet" href="{{ SITEURL }}/theme/css/font-awesome.min.css">
-  <link rel="stylesheet" href="{{ SITEURL }}/theme/css/pygments/default.min.css">
   <link rel="stylesheet" href="{{ SITEURL }}/theme/css/theme.css">
 
   {% block meta %}{% endblock %}
 
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-131668455-2"></script>
   <script>
@@ -27,83 +25,59 @@
   gtag('config', 'UA-131668455-2');
   </script>
   <script defer src="https://m.masoko.net/core-util" data-website-id="3f1aad27-edc0-436c-9550-6c24e179e821"></script>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
-</style>
+  <script defer src="{{ SITEURL }}/theme/js/site.js"></script>
 </head>
 
 <body>
-  <header class="header">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-1">
-          <a href="{{ SITEURL }}/">
-            <img src="{{ SITEURL }}/images/logo.png" alt="{{ SITENAME }}">
-          </a>
-        </div>
-        <div class="col-sm-7">
-          <h1 class="title"><a href="{{ SITEURL }}/">{{ SITENAME }}</a></h1>
-          <p class="text-muted">{{ SITESUBTITLE|safe }}</p>
-        </div>
-        <div class="col-sm-4">
-          <p>
-            <form class="navbar-search" action="{{ SITEURL }}/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="" name="q" id="tipue_search_input"><input type="submit" value="Search"></form>
-          </p>
-        </div>
-      </div>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="{{ SITEURL }}/">
+        <img class="brand-logo" src="{{ SITEURL }}/images/logo.png" alt="" width="44" height="44">
+        <span class="brand-text">
+          <span class="brand-name">{{ SITENAME }}</span>
+          <span class="brand-tag">{{ SITESUBTITLE }}</span>
+        </span>
+      </a>
+      <form class="search" role="search" action="{{ SITEURL }}/search.html">
+        <input type="search" name="q" id="tipue_search_input" placeholder="Search free apps&hellip;" aria-label="Search apps">
+        <button type="submit" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10 2a8 8 0 0 1 5.9 13.4l5.4 5.4-1.5 1.5-5.4-5.4A8 8 0 1 1 10 2zm0 2a6 6 0 1 0 0 12 6 6 0 0 0 0-12z"/></svg>
+        </button>
+      </form>
     </div>
-    <div class="menu">
-      <div class="container">
-        <div class="col-sm-12">
-          <ul class="list-inline">
-            {% for category, null in categories|sort(attribute='0.name') %}
-            <li class="list-inline-item"><a href="{{ SITEURL }}/{{ category.url }}">{{ category }}</a></li>
-            {% endfor %}
-            <li class="list-inline-item"><a href="{{ SITEURL }}/submit-app.html">Submit an App</a></li>
-          </ul>
-        </div>
+    <nav class="site-nav" aria-label="Categories">
+      <div class="container nav-scroll">
+        {% for category, null in categories|sort(attribute='0.name') %}
+        <a class="chip" href="{{ SITEURL }}/{{ category.url }}">{{ category }}</a>
+        {% endfor %}
+        <a class="chip chip-accent" href="{{ SITEURL }}/submit-app.html">Submit an App</a>
       </div>
-    </div>
+    </nav>
   </header>
 
-  <div class="main">
+  <main class="site-main">
     <div class="container">
-      {% block content %}{% endblock %}
-    </div>
-  </div>
-
-  <footer class="footer">
-    <div class="menu">
-      <div class="container">
-        <div class="headf">
-          <a href="{{ SITEURL }}/archives.html">Archives</a> &nbsp;
-          <a href="{{ SITEURL }}/categories.html">Categories</a> &nbsp;
-          <a href="{{ SITEURL }}/tags.html">Tags</a> &nbsp;
-          <a href="{{ SITEURL }}/submit-app.html">Submit an App</a> &nbsp;
-          {% block footerextra %}{% endblock %}
-        </div>
+      <div class="panel">
+        {% block content %}{% endblock %}
       </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-links">
+        <a href="{{ SITEURL }}/archives.html">Archives</a>
+        <a href="{{ SITEURL }}/categories.html">Categories</a>
+        <a href="{{ SITEURL }}/tags.html">Tags</a>
+        <a href="{{ SITEURL }}/submit-app.html">Submit an App</a>
+      </div>
+      <div class="footer-note">{% block footerextra %}{% endblock %}</div>
     </div>
   </footer>
 
-<a id="button"></a>
-
-<script type="text/javascript">
-var btn = $('#button');
-
-$(window).scroll(function() {
-  if ($(window).scrollTop() > 300) {
-    btn.addClass('show');
-  } else {
-    btn.removeClass('show');
-  }
-});
-
-btn.on('click', function(e) {
-  e.preventDefault();
-  $('html, body').animate({scrollTop:0}, '300');
-});
-</script>
+  <button class="to-top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 8l8 8-1.5 1.5L12 11l-6.5 6.5L4 16z"/></svg>
+  </button>
 </body>
 
 </html>
