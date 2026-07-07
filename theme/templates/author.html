@@ -4,6 +4,8 @@
 
 {% block canonical_url %}{{ output_file }}{% endblock %}
 
+{% block meta %}<meta name="robots" content="noindex, follow">{% endblock %}
+
 {% block content %}
       <h1 class="page-title">{{ author }} Articles</h1>
       {% include "includes/teaser_list.html" %}

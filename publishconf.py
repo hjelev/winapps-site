@@ -8,5 +8,6 @@ from pelicanconf import *
 SITEURL = 'https://winapps.masoko.net'
 RELATIVE_URLS = False
 
-FEED_ALL_ATOM = None
+FEED_DOMAIN = SITEURL
+FEED_ALL_ATOM = 'all.atom.xml'
 CATEGORY_FEED_ATOM = None

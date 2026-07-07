@@ -4,6 +4,24 @@
 
 {% block canonical_url %}{{ output_file }}{% endblock %}
 
+{% block meta_description %}Curated free Windows software: {{ articles_paginator.count }} hand-picked apps with reviews, screenshots and direct download links. {{ SITESUBTITLE }}{% endblock %}
+
+{% block jsonld %}{% if articles_page.number == 1 %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": {{ SITENAME|tojson }},
+  "url": "{{ SITEURL }}/",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "{{ SITEURL }}/search.html?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+{% endif %}{% endblock %}
+
 {% block content %}
       <h1 class="page-title">Latest additions</h1>
       {% include "includes/teaser_list.html" %}

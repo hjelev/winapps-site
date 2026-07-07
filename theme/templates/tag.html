@@ -4,6 +4,10 @@
 
 {% block canonical_url %}{{ output_file }}{% endblock %}
 
+{% block meta_description %}Free Windows apps tagged #{{ tag }} on {{ SITENAME }} — reviews and download links.{% endblock %}
+
+{% block meta %}<meta name="robots" content="noindex, follow">{% endblock %}
+
 {% block content %}
       <h1>#{{ tag }}</h1>
       <hr>

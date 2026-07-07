@@ -4,8 +4,8 @@ Sitemap generator.
 
 Hand-rolled Pelican plugin (matching the style of tipue_search_json.py)
 that writes a sitemap.xml at the output root, listing the homepage,
-every published article, every page, every category/tag/author archive
-page, and the DIRECT_TEMPLATES pages. Paginated index pages
+every published article, every page, every category archive page,
+and the DIRECT_TEMPLATES pages. Paginated index pages
 (index2.html, ...) are never referenced by any context object, so they
 are naturally never emitted here.
 """
@@ -40,12 +40,10 @@ class SitemapGenerator(object):
         for page in self.context.get('pages', []):
             self._add(page.url, self._lastmod_for(page))
 
+        # Tag and author archives are noindexed (thin pages), so they are
+        # deliberately not listed here.
         for category, _articles in self.context.get('categories', []):
             self._add(category.url, None)
-        for tag, _articles in self.context.get('tags', []):
-            self._add(tag.url, None)
-        for author, _articles in self.context.get('authors', []):
-            self._add(author.url, None)
 
         for template in self.settings.get('DIRECT_TEMPLATES', []):
             if template == 'index':

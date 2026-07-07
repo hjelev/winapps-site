@@ -4,6 +4,8 @@
 
 {% block canonical_url %}{{ output_file }}{% endblock %}
 
+{% block meta_description %}Free Windows apps in category {{ category }} — {{ articles|length }} apps with reviews, screenshots and direct download links on {{ SITENAME }}.{% endblock %}
+
 {% block content %}
       <h1 class="page-title">{{ category }}</h1>
       {% include "includes/teaser_list.html" %}

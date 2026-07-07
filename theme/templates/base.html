@@ -10,20 +10,25 @@
   <title>{% block title %}{{ SITENAME }}{% endblock %}</title>
   <link rel="canonical" href="{{ SITEURL }}/{% block canonical_url %}{% endblock %}">
   <link rel="shortcut icon" type="image/png" href="{{ SITEURL }}/images/favicon.png"/>
+  {% if FEED_ALL_ATOM %}
+  <link rel="alternate" type="application/atom+xml" title="{{ SITENAME }} — Atom feed" href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}">
+  {% endif %}
+
+  <meta name="description" content="{% block meta_description %}{{ SITENAME }} — a curated directory of free Windows software with reviews, screenshots and direct download links. {{ SITESUBTITLE }}{% endblock %}">
+  <meta property="og:site_name" content="{{ SITENAME }}">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="{% block og_title %}{{ self.title()|trim }}{% endblock %}">
+  <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+  <meta property="og:url" content="{{ SITEURL }}/{{ self.canonical_url() }}">
+  <meta property="og:image" content="{% block og_image %}{{ SITEURL }}/images/logo.png{% endblock %}">
+  <meta property="og:description" content="{% block og_description %}{{ self.meta_description() }}{% endblock %}">
+  <meta name="twitter:card" content="summary">
 
   <link rel="stylesheet" href="{{ SITEURL }}/theme/css/theme.css">
 
   {% block meta %}{% endblock %}
+  {% block jsonld %}{% endblock %}
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-131668455-2"></script>
-  <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-131668455-2');
-  </script>
   <script defer src="https://m.masoko.net/core-util" data-website-id="3f1aad27-edc0-436c-9550-6c24e179e821"></script>
   <script defer src="{{ SITEURL }}/theme/js/site.js"></script>
 </head>

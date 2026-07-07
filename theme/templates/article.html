@@ -5,15 +5,31 @@
 
 {% block canonical_url %}{{ article.url }}{% endblock %}
 
-{% block meta %}
-  <meta name="description" content="{{ article.summary|striptags }}">
+{% block meta_description %}{{ article.summary|striptags|trim }}{% endblock %}
+{% block og_title %}{{ article.title }}{% endblock %}
+{% block og_type %}article{% endblock %}
+{% block og_image %}{{ SITEURL }}{{ article.image }}{% endblock %}
 
-	<!-- Open Graph data -->
-	<meta property="og:title" content="{{ article.title }}" />
-	<meta property="og:type" content="article" />
-	<meta property="og:url" content="{{ SITEURL }}/{{ article.url }}" />
-	<meta property="og:image" content="{{ SITEURL }}{{ article.image }}" />
-	<meta property="og:description" content="{{ article.summary|striptags }}" />
+{% block meta %}
+  <meta property="article:published_time" content="{{ article.date.isoformat() }}">
+  {% if article.modified %}<meta property="article:modified_time" content="{{ article.modified.isoformat() }}">{% endif %}
+{% endblock %}
+
+{% block jsonld %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": {{ article.title|tojson }},
+  "operatingSystem": "Windows",
+  "applicationCategory": {{ article.category|string|tojson }},
+  "image": {{ (SITEURL ~ article.image)|tojson }},
+  "url": {{ (SITEURL ~ '/' ~ article.url)|tojson }},
+  "description": {{ article.summary|striptags|trim|tojson }},
+  "datePublished": "{{ article.date.isoformat() }}",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
 {% endblock %}
 
 {% block content %}

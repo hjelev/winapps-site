@@ -4,6 +4,10 @@
 
 {% block canonical_url %}search.html{% endblock %}
 
+{% block meta_description %}Search {{ SITENAME }} for free Windows software.{% endblock %}
+
+{% block meta %}<meta name="robots" content="noindex, follow">{% endblock %}
+
 {% block content %}
       <h1 class="page-title">Search results</h1>
       <div id="tipue_search_content" data-root="{{ SITEURL }}/"></div>
