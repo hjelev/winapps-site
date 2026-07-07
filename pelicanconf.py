@@ -42,13 +42,14 @@ DIRECT_TEMPLATES = ['index', 'categories', 'tags', 'archives']
 
 DEFAULT_PAGINATION = 10
 
-STATIC_PATHS = ['images', 'extra/CNAME']
+STATIC_PATHS = ['images', 'extra/CNAME', 'extra/robots.txt']
 EXTRA_PATH_METADATA = {
     'extra/CNAME': {'path': 'CNAME'},
+    'extra/robots.txt': {'path': 'robots.txt'},
 }
 
 PLUGIN_PATHS = ['plugins']
-PLUGINS = ['tipue_search_json']
+PLUGINS = ['tipue_search_json', 'sitemap']
 
 DEFAULT_METADATA = {
     'status': 'published',
